@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+   <link href="css.css"  rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Descubra o Número</title>
+ 
+</head>
+<body>
+    <h1>Jogo de Descubra o Número</h1>
+    <button onclick="startGame()">Sortear</button>
+    <br><br>
+    <input type="text" id="guess" placeholder="Seu palpite">
+    <button onclick="checkGuess()">Tentar</button>
+    <p id="message"></p>
+    <textarea id="log" readonly></textarea>
+
+    <script>
+        let randomNumber;
+        let gameStarted = false;
+        let attempts = 0;
+
+        function startGame() {
+            randomNumber = Math.floor(Math.random() * 100) + 1;
+            gameStarted = true;
+            attempts = 0;
+            document.getElementById('log').value = '';
+            document.getElementById('message').textContent = 'O jogo começou! Faça seu palpite.';
+            document.getElementById('guess').value = '';
+        }
+
+        function checkGuess() {
+            if (!gameStarted) {
+                document.getElementById('message').textContent = 'O jogo ainda não foi iniciado. Clique em "Sortear" para começar.';
+                return;
+            }
+
+            const userGuess = Number(document.getElementById('guess').value);
+            const message = document.getElementById('message');
+            const log = document.getElementById('log');
+            attempts++;
+
+            if (isNaN(userGuess)) {
+                message.textContent = 'Por favor, insira um número válido.';
+                return;
+            }
+
+            if (userGuess === randomNumber) {
+                message.textContent = `Parabéns! Você acertou o número ${randomNumber} em ${attempts} tentativas.`;
+                log.value += `Palpite ${attempts}: ${userGuess} - Acertou!\n`;
+                gameStarted = false;
+            } else if (userGuess < randomNumber) {
+                message.textContent = 'Muito baixo! Tente novamente.';
+                log.value += `Palpite ${attempts}: ${userGuess} - Muito baixo\n`;
+            } else if (userGuess > randomNumber) {
+                message.textContent = 'Muito alto! Tente novamente.';
+                log.value += `Palpite ${attempts}: ${userGuess} - Muito alto\n`;
+            }
+
+            document.getElementById('guess').value = '';
+        }
+
+        document.getElementById('guess').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkGuess();
+            }
+        });
+    </script>
+</body>
+</html>
