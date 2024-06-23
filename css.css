@@ -1,13 +1,55 @@
+/* Estilo para o corpo da página */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
     text-align: center;
-    margin-top: 50px;
+    padding: 20px;
 }
+
+/* Estilo para o título principal */
+h1 {
+    color: #4682b4;
+}
+
+/* Estilo para os botões */
+button {
+    background-color: #4682b4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #5a9bd4;
+}
+
+/* Estilo para o campo de entrada */
 input[type="text"] {
-    width: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px;
 }
+
+/* Estilo para a mensagem */
+p {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Estilo para o log de palpites */
 textarea {
-    width: 300px;
+    width: 100%;
     height: 150px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     margin-top: 20px;
+    padding: 10px;
+    resize: none;
 }
